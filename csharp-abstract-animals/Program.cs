@@ -6,43 +6,67 @@ namespace csharp_abstract_animals
     {
         static void Main(string[] args)
         {
-
             Esercizio1();
             Esercizio2();
-
-
-            
-
-
         }
         public static void Esercizio1() 
         {
+
+            List <Animale> listAnimali = new List <Animale>();
             Aquila AquilaDiBonelli = new Aquila();
-            AquilaDiBonelli.Dormi();
-            AquilaDiBonelli.Verso();
-            AquilaDiBonelli.Mangia();
-
-
             Cane Bassotto = new Cane();
-            Bassotto.Dormi();
-            Bassotto.Verso();
-            Bassotto.Mangia();
-
-
-
             Delfino StenellaMaculata = new Delfino();
-            StenellaMaculata.Dormi();
-            StenellaMaculata.Verso();
-            StenellaMaculata.Mangia();
-
-
             Passerotto Testagrigia = new Passerotto();
-            Testagrigia.Dormi();
-            Testagrigia.Verso();
-            Testagrigia.Mangia();
+
+            listAnimali.Add(AquilaDiBonelli);
+            listAnimali.Add (Bassotto);
+            listAnimali.Add(StenellaMaculata);
+            listAnimali.Add(Testagrigia);
+
+            foreach(Animale a in listAnimali)
+            {
+                a.Dormi();
+                a.Verso();
+                a.Mangia();
+            }
+            
         }
         public static void Esercizio2()
         {
+            Console.WriteLine("Crea un animale: digita 1 per un'aquila, 2 per un cane, 3 per un delfino e 4 per un passero");
+            int numAnimale;
+            while((!int.TryParse(Console.ReadLine(), out numAnimale)) || !(numAnimale > 0 && numAnimale < 5))
+                Console.WriteLine("il numero inserito non è valido");
+
+            switch (numAnimale)
+            {
+                case 1:
+                    {
+                        Aquila aquilaUtente = new Aquila();
+                        FaiVolare(aquilaUtente);
+                        break;
+                    }
+                case 2:
+                    {
+                        Cane caneUtente = new Cane();
+                        FaiCamminare(caneUtente);
+                        break;
+                    }
+                case 3:
+                    {
+                        Delfino delfinoUtente = new Delfino();
+                        FaiNuotare(delfinoUtente);
+                        break;
+                    }
+                case 4:
+                    {
+                        Passerotto passeroUtente = new Passerotto();
+                        FaiVolare(passeroUtente);
+                        break;
+                    }
+
+            }   
+
             void FaiVolare(IVolante animal)
             {
                 animal.Vola();
@@ -56,18 +80,7 @@ namespace csharp_abstract_animals
                 animal.Cammina();
             }
 
-            for(int i = 0; i < 3; i++) 
-            {
-                Aquila aquila = new Aquila();
-                FaiVolare(aquila);
-                Passerotto Passero = new Passerotto();
-                FaiVolare(Passero);
-                Delfino delfino = new Delfino();
-                FaiNuotare(delfino);
-                Cane cane = new Cane();
-                FaiCamminare(cane);
-
-            }
+            
 
         }
 
